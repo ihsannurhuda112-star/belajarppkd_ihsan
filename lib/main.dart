@@ -1,8 +1,12 @@
-import 'package:belajarppkd_ihsan/day%2015/drawer.dart';
 import 'package:belajarppkd_ihsan/day%2015/navigasi.dart';
+import 'package:belajarppkd_ihsan/day%2016/cekbox.dart';
+import 'package:belajarppkd_ihsan/day%2016/tombol.dart';
+import 'package:belajarppkd_ihsan/day%2016/tugas7flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
-void main() {
+void main() async {
+  await initializeDateFormatting('id_ID', null);
   runApp(const MyApp());
 }
 
@@ -32,7 +36,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const NavigasiWidget(),
+      home: const TombolWidget(),
     );
   }
 }

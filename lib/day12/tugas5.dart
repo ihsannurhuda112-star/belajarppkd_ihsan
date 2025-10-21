@@ -101,7 +101,7 @@ class _Tugas5State extends State<Tugas5> {
                           showbox = !showbox;
                         });
                       },
-                      child: Container(
+                      child: SizedBox(
                         width: double.infinity,
                         height: 100,
 
