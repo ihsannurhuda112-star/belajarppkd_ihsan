@@ -39,8 +39,8 @@ class _Tugas7flutterWidgetState extends State<Tugas7flutterWidget> {
               leading: CircleAvatar(
                 backgroundImage: AssetImage('assets/images/sun.jpeg'),
               ),
-              title: Text("Hebat"),
-              subtitle: Text("kEREN"),
+              title: Text("Sung Jin-Woo"),
+              subtitle: Text("shadow monarch"),
             ),
             Divider(),
 
