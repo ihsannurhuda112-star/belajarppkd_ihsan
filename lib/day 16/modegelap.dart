@@ -16,7 +16,7 @@ class _ModegelapWidgetState extends State<ModegelapWidget> {
       child: Column(
         children: [
           Text(
-            "Mode gelap",
+            "Aktifkan Mode Gelap",
             style: TextStyle(color: isGelap ? Colors.white : Colors.black),
           ),
           Switch(
@@ -28,7 +28,7 @@ class _ModegelapWidgetState extends State<ModegelapWidget> {
             },
           ),
           Text(
-            isGelap ? "On" : "Off",
+            isGelap ? "Mode Gelap Aktif" : "Mode Terang aktif",
             style: TextStyle(color: isGelap ? Colors.white : Colors.black),
           ),
           Container(

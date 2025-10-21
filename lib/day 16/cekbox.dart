@@ -11,31 +11,33 @@ class _CekboxWidgetState extends State<CekboxWidget> {
   bool isCek = false;
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Checkbox(
-          value: isCek,
-          onChanged: (value) {
-            print(value);
-            setState(() {
-              isCek = value!;
-            });
-          },
-        ),
-        Text(
-          isCek
-              ? "Lanjutkan pendaftaran diperbolehkan"
-              : "Anda belum bisa melanjutkan",
-        ),
-        ElevatedButton(
-          onPressed: isCek ? () {} : null,
-          child: Text(
-            isCek
-                ? "Saya menyetujui semua persyaratan yang berlaku"
-                : "Maaf anda belum bisa melanjutkan",
+    return Center(
+      child: Column(
+        children: [
+          Checkbox(
+            value: isCek,
+            onChanged: (value) {
+              print(value);
+              setState(() {
+                isCek = value!;
+              });
+            },
           ),
-        ),
-      ],
+          Text(
+            isCek
+                ? "Lanjutkan pendaftaran diperbolehkan"
+                : "Anda belum bisa melanjutkan",
+          ),
+          ElevatedButton(
+            onPressed: isCek ? () {} : null,
+            child: Text(
+              isCek
+                  ? "Saya menyetujui semua persyaratan yang berlaku"
+                  : "Maaf anda belum bisa melanjutkan",
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

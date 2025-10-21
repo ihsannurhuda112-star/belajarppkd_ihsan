@@ -31,7 +31,7 @@ class _Tugas7flutterWidgetState extends State<Tugas7flutterWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Tes duls")),
+      appBar: AppBar(title: Text("Tugas Flutter 7")),
       drawer: Drawer(
         child: ListView(
           children: [
@@ -57,7 +57,7 @@ class _Tugas7flutterWidgetState extends State<Tugas7flutterWidget> {
               onTap: () {
                 onTapDrawer(1);
               },
-              leading: Icon(Icons.padding),
+              leading: Icon(Icons.dark_mode),
               title: Text("Gelap"),
             ),
             Divider(),
@@ -66,8 +66,8 @@ class _Tugas7flutterWidgetState extends State<Tugas7flutterWidget> {
               onTap: () {
                 onTapDrawer(2);
               },
-              leading: Icon(Icons.accessible),
-              title: Text("Entah"),
+              leading: Icon(Icons.production_quantity_limits),
+              title: Text("Produk"),
             ),
             Divider(),
 
@@ -84,7 +84,7 @@ class _Tugas7flutterWidgetState extends State<Tugas7flutterWidget> {
               onTap: () {
                 onTapDrawer(4);
               },
-              leading: Icon(Icons.access_time),
+              leading: Icon(Icons.timer_sharp),
               title: Text("Timer"),
             ),
           ],

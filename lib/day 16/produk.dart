@@ -14,7 +14,7 @@ class _ProdukWidgetState extends State<ProdukWidget> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text("Produk"),
+        Text("Pilih Katergori Produk"),
         DropdownButton(
           value: Produk,
           items: listBarang.map((String val) {
@@ -39,6 +39,7 @@ class _ProdukWidgetState extends State<ProdukWidget> {
               ? Colors.tealAccent
               : Colors.blueGrey,
         ),
+        Text("Anda memilih : $Produk"),
       ],
     );
   }

@@ -12,33 +12,34 @@ class _LahirWidgetState extends State<LahirWidget> {
   DateTime? selectedPicked = DateTime.now();
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text("2025-02-31"),
-        Text("31-02-2025"),
-        Text(selectedPicked.toString()),
-        Text(DateFormat('yyyy-MM-dd').format(selectedPicked!)),
-        Text(DateFormat('dd-MM-yyyy').format(selectedPicked!)),
-        Text(DateFormat('dd-MMM-yyyy').format(selectedPicked!)),
-        Text(DateFormat('EEEE, MMMM-yyyy', "id_ID").format(selectedPicked!)),
+    return Center(
+      child: Column(
+        children: [
+          Text(selectedPicked.toString()),
+          Text(DateFormat('yyyy-MM-dd').format(selectedPicked!)),
+          Text(DateFormat('dd-MM-yyyy').format(selectedPicked!)),
+          Text(DateFormat('dd-MMM-yyyy').format(selectedPicked!)),
+          Text(DateFormat('EEEE, MMMM-yyyy', "id_ID").format(selectedPicked!)),
 
-        ElevatedButton(
-          onPressed: () async {
-            final DateTime? picked = await showDatePicker(
-              context: context,
-              firstDate: DateTime(2000),
-              lastDate: DateTime(2100),
-            );
-            if (picked != null) {
-              print(picked);
-              setState(() {
-                selectedPicked = picked;
-              });
-            }
-          },
-          child: Text("Pilih Tanggal Lahir"),
-        ),
-      ],
+          ElevatedButton(
+            onPressed: () async {
+              final DateTime? picked = await showDatePicker(
+                context: context,
+                firstDate: DateTime(2000),
+                lastDate: DateTime(2100),
+              );
+              if (picked != null) {
+                print(picked);
+                setState(() {
+                  selectedPicked = picked;
+                });
+              }
+            },
+            child: Text("Pilih Tanggal Lahir"),
+          ),
+          Text("Tanggal Lahir : $selectedPicked"),
+        ],
+      ),
     );
   }
 }
