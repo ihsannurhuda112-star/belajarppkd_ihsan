@@ -1,4 +1,5 @@
-import 'package:belajarppkd_ihsan/day13/tugasflutter6.dart';
+import 'package:belajarppkd_ihsan/day%2015/drawer.dart';
+import 'package:belajarppkd_ihsan/day%2015/navigasi.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const Tugasflutter6(),
+      home: const NavigasiWidget(),
     );
   }
 }
