@@ -1,7 +1,4 @@
-import 'package:belajarppkd_ihsan/day%2015/navigasi.dart';
-import 'package:belajarppkd_ihsan/day%2016/cekbox.dart';
-import 'package:belajarppkd_ihsan/day%2016/tombol.dart';
-import 'package:belajarppkd_ihsan/day%2016/tugas7flutter.dart';
+import 'package:belajarppkd_ihsan/day%2017/tugas9flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
@@ -36,7 +33,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const TombolWidget(),
+      home: const Tugas9flutterWidget(),
     );
   }
 }
