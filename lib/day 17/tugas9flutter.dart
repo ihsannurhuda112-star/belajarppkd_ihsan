@@ -1,5 +1,6 @@
 import 'package:belajarppkd_ihsan/day%2017/listview_list.dart';
 import 'package:belajarppkd_ihsan/day%2017/listview_list_map.dart';
+import 'package:belajarppkd_ihsan/day%2017/listview_model.dart';
 import 'package:flutter/material.dart';
 
 class Tugas9flutterWidget extends StatefulWidget {
@@ -14,6 +15,7 @@ class _Tugas9flutterWidgetState extends State<Tugas9flutterWidget> {
   static const List<Widget> _widgetOptions = [
     ListviewListWidget(),
     ListviewListMapWidget(),
+    ListviewModelWidget(),
   ];
   void onTapDrawer(int index) {
     setState(() {
@@ -52,7 +54,7 @@ class _Tugas9flutterWidgetState extends State<Tugas9flutterWidget> {
                 onTapDrawer(1);
               },
               leading: Icon(Icons.dark_mode),
-              title: Text("Gelap"),
+              title: Text("Chiki"),
             ),
             Divider(),
 
@@ -62,24 +64,6 @@ class _Tugas9flutterWidgetState extends State<Tugas9flutterWidget> {
               },
               leading: Icon(Icons.production_quantity_limits),
               title: Text("Produk"),
-            ),
-            Divider(),
-
-            ListTile(
-              onTap: () {
-                onTapDrawer(3);
-              },
-              leading: Icon(Icons.access_time),
-              title: Text("Waktu"),
-            ),
-            Divider(),
-
-            ListTile(
-              onTap: () {
-                onTapDrawer(4);
-              },
-              leading: Icon(Icons.timer_sharp),
-              title: Text("Timer"),
             ),
           ],
         ),
