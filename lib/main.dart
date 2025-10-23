@@ -1,4 +1,5 @@
-import 'package:belajarppkd_ihsan/day%2017/login_screen.dart';
+import 'package:belajarppkd_ihsan/day%2018/login_screen_18.dart';
+import 'package:belajarppkd_ihsan/day%2018/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const LoginScreenWidget(),
+      home: const SplashScreenDay18(),
     );
   }
 }
