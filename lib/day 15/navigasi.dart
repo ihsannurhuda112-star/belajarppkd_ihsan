@@ -4,7 +4,8 @@ import 'package:belajarppkd_ihsan/tugasday_10/test4.dart';
 import 'package:flutter/material.dart';
 
 class NavigasiWidget extends StatefulWidget {
-  const NavigasiWidget({super.key});
+  const NavigasiWidget({super.key, required this.name});
+  final name;
 
   @override
   State<NavigasiWidget> createState() => _NavigasiWidgetState();
