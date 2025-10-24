@@ -3,15 +3,15 @@ import 'package:belajarppkd_ihsan/day%2017/pendaftaran.dart';
 import 'package:belajarppkd_ihsan/preferences/preference_handler.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreen18Widget extends StatefulWidget {
-  const LoginScreen18Widget({super.key});
+class LoginScreen19Widget extends StatefulWidget {
+  const LoginScreen19Widget({super.key});
   static const id = "/login_screen18";
 
   @override
-  State<LoginScreen18Widget> createState() => _LoginScreen18WidgetState();
+  State<LoginScreen19Widget> createState() => _LoginScreen19WidgetState();
 }
 
-class _LoginScreen18WidgetState extends State<LoginScreen18Widget> {
+class _LoginScreen19WidgetState extends State<LoginScreen19Widget> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController domController = TextEditingController();
