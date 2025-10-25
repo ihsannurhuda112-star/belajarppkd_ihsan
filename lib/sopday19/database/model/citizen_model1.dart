@@ -1,18 +1,16 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-class CitizenModel {
+class CitizenModel1 {
   int? id;
   String name;
   String email;
   int age;
-  String pass;
-  CitizenModel({
+  CitizenModel1({
     this.id,
     required this.name,
     required this.email,
     required this.age,
-    required this.pass,
   });
 
   Map<String, dynamic> toMap() {
@@ -21,22 +19,20 @@ class CitizenModel {
       'name': name,
       'email': email,
       'age': age,
-      'pass': pass,
     };
   }
 
-  factory CitizenModel.fromMap(Map<String, dynamic> map) {
-    return CitizenModel(
-      id: map['id'] != null ? map['id'] as int : null,
+  factory CitizenModel1.fromMap(Map<String, dynamic> map) {
+    return CitizenModel1(
+      id: map['id'] as int,
       name: map['name'] as String,
       email: map['email'] as String,
       age: map['age'] as int,
-      pass: map['pass'] as String,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory CitizenModel.fromJson(String source) =>
-      CitizenModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory CitizenModel1.fromJson(String source) =>
+      CitizenModel1.fromMap(json.decode(source) as Map<String, dynamic>);
 }

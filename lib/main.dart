@@ -1,7 +1,6 @@
-import 'package:belajarppkd_ihsan/day%2018/splash_screen.dart';
-import 'package:belajarppkd_ihsan/day%2019/database/db_helper.dart';
 import 'package:belajarppkd_ihsan/day%2019/model/login_screen_19.dart';
-import 'package:belajarppkd_ihsan/day%2019/view/register_screen_19.dart';
+import 'package:belajarppkd_ihsan/sopday19/database/model/start_page.dart';
+import 'package:belajarppkd_ihsan/sopday19/database/model/tugas11_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
@@ -36,7 +35,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const RegisterScreenDay19(),
+      home: const StartingPage(),
     );
   }
 }

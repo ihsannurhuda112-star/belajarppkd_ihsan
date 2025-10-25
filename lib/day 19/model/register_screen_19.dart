@@ -1,6 +1,6 @@
 import 'package:belajarppkd_ihsan/day%2015/login_button.dart';
 import 'package:belajarppkd_ihsan/day%2019/database/db_helper.dart';
-import 'package:belajarppkd_ihsan/day%2019/model/user_model.dart';
+import 'package:belajarppkd_ihsan/day%2019/model/citizen_model.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -17,6 +17,7 @@ class _RegisterScreenDay19State extends State<RegisterScreenDay19> {
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController domController = TextEditingController();
+  final TextEditingController ageController = TextEditingController();
   bool isVisibility = false;
   @override
   Widget build(BuildContext context) {
@@ -120,16 +121,38 @@ class _RegisterScreenDay19State extends State<RegisterScreenDay19> {
                   height(5),
                   buildTextField(hintText: "Enter your phone number"),
 
+                  SizedBox(height: 8),
+                  Text("Umur"),
+                  SizedBox(height: 8),
+                  TextFormField(
+                    controller: ageController,
+                    autovalidateMode: AutovalidateMode.onUnfocus,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'Masukan Umur Anda',
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Umur Tidak Boleh Kosong';
+                      }
+                      if (!RegExp(r'^[0-9]+$').hasMatch(value)) {
+                        return 'Masukan Umur dengan angka 1-99';
+                      }
+                      return null;
+                    },
+                  ),
+
                   height(24),
                   LoginButtonWidget(
                     text: "Register",
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         print(emailController.text);
-                        final UserModel data = UserModel(
+                        final CitizenModel data = CitizenModel(
                           email: emailController.text,
-                          username: usernameController.text,
-                          password: passwordController.text,
+                          name: usernameController.text,
+                          pass: passwordController.text,
+                          age: int.parse(ageController.text),
                         );
                         DbHelper.registerUser(data);
                         Fluttertoast.showToast(msg: "Register Berhasil");

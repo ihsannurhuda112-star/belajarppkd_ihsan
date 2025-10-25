@@ -1,27 +1,58 @@
+import 'package:belajarppkd_ihsan/day%2015/drawer.dart';
 import 'package:belajarppkd_ihsan/day%2015/login_button.dart';
-import 'package:belajarppkd_ihsan/day%2017/pendaftaran.dart';
+import 'package:belajarppkd_ihsan/day%2019/database/db_helper.dart';
+import 'package:belajarppkd_ihsan/day%2019/model/register_screen_19.dart';
+import 'package:belajarppkd_ihsan/day%2019/model/rumah.dart';
 import 'package:belajarppkd_ihsan/preferences/preference_handler.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
-class LoginScreen19Widget extends StatefulWidget {
-  const LoginScreen19Widget({super.key});
+//Bahas Shared Preference
+class LoginScreenDay19 extends StatefulWidget {
+  const LoginScreenDay19({super.key});
   static const id = "/login_screen18";
-
   @override
-  State<LoginScreen19Widget> createState() => _LoginScreen19WidgetState();
+  State<LoginScreenDay19> createState() => _LoginScreenDay19State();
 }
 
-class _LoginScreen19WidgetState extends State<LoginScreen19Widget> {
-  final TextEditingController nameController = TextEditingController();
+class _LoginScreenDay19State extends State<LoginScreenDay19> {
   final TextEditingController emailController = TextEditingController();
-  final TextEditingController domController = TextEditingController();
-  final TextEditingController noHp = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController usernameController = TextEditingController();
+  bool isVisibility = false;
+  bool isbuttonenable = false;
+  bool obsucrepass = false;
+
+  @override
+  void dispose() {
+    super.dispose();
+    emailController.dispose();
+    usernameController.dispose();
+    passwordController.dispose();
+  }
+
+  void checkformField() {
+    setState(() {
+      isbuttonenable =
+          emailController.text.isNotEmpty &&
+          usernameController.text.isNotEmpty &&
+          passwordController.text.isNotEmpty;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(body: Stack(children: [buildBackground(), buildLayer()]));
   }
 
+  login() async {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => DrawerWidget()),
+    );
+  }
+
+  final _formKey = GlobalKey<FormState>();
   SafeArea buildLayer() {
     return SafeArea(
       child: Form(
@@ -32,39 +63,20 @@ class _LoginScreen19WidgetState extends State<LoginScreen19Widget> {
             child: SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
+                // crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
                     "Welcome Back",
-                    style: TextStyle(
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                      color: const Color.fromARGB(255, 15, 15, 15),
-                      height: (12),
-                    ),
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ),
-                  height(5),
-                  buildTitle("Nama"),
-                  height(5),
-                  buildTextField(
-                    hintText: "Enter your name",
-                    controller: nameController,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "Nama tidak boleh kosong";
-                      }
-                      return null;
-                    },
-                  ),
+                  height(12),
                   Text(
                     "Login to access your account",
-                    style: TextStyle(
-                      fontSize: 15,
-                      color: const Color.fromARGB(255, 12, 12, 12),
-                    ),
+                    // style: TextStyle(fontSize: 14, color: AppColor.gray88),
                   ),
-                  height(5),
+                  height(24),
                   buildTitle("Email Address"),
-                  height(5),
+                  height(12),
                   buildTextField(
                     hintText: "Enter your email",
                     controller: emailController,
@@ -81,96 +93,103 @@ class _LoginScreen19WidgetState extends State<LoginScreen19Widget> {
                       return null;
                     },
                   ),
-                  height(5),
-                  buildTitle("Domisili"),
-                  height(5),
+                  height(24),
+                  buildTitle("Username"),
+                  height(12),
                   buildTextField(
-                    hintText: "Enter your domisili",
-                    controller: domController,
+                    hintText: "Enter your username",
+                    controller: usernameController,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return "Domisili tidak boleh kosong";
+                        return "Username tidak boleh kosong";
                       }
                       return null;
                     },
                   ),
-                  height(5),
-                  buildTitle("Phone"),
-                  height(5),
-                  buildTextField(hintText: "Enter your phone number"),
 
-                  height(5),
-                  LoginButtonWidget(
-                    text: "Login",
-                    onPressed: () {
-                      PreferenceHandler.saveLogin(true);
-                      if (_formKey.currentState!.validate()) {
-                        // print(nameController.text);
-                        // print(domController.text);
+                  height(16),
+                  buildTitle("Password"),
+                  height(12),
+                  buildTextField(
+                    hintText: "Enter your password",
+                    isPassword: true,
+                    controller: passwordController,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Password tidak boleh kosong";
+                      } else if (value.length < 6) {
+                        return "Password minimal 6 karakter";
+                      }
+                      return null;
+                    },
+                  ),
+                  height(12),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: TextButton(
+                      onPressed: () {
                         // Navigator.push(
                         //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (context) => PendaftaranWidget(
-                        //       name: nameController.text,
-                        //       dom: domController.text,
-                        //     ),
-                        //   ),
+                        //   MaterialPageRoute(builder: (context) => HomeScreen()),
                         // );
-                        // SizedBox(height: 50);
-                        // ElevatedButton(
-                        //   onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          showDialog(
-                            context: context,
-                            builder: (context) {
-                              return AlertDialog(
-                                title: Text("The data true?"),
-                                content: Text(
-                                  "Nama: ${nameController.text}\n"
-                                  "Email: ${emailController.text}\n"
-                                  "No.Hp: ${noHp.text}\n"
-                                  "Domisili: ${domController.text}",
-                                ),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                    child: Text("kembali"),
-                                  ),
-                                  TextButton(
-                                    onPressed: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) {
-                                            return PendaftaranWidget(
-                                              name: nameController.text,
-                                              dom: domController.text,
-                                            );
-                                          },
-                                        ),
-                                      );
-                                    },
-                                    child: Text("proses"),
-                                  ),
-                                ],
-                              );
-                            },
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(builder: (context) => MeetSebelas()),
+                        // );
+                      },
+                      child: Text(
+                        "Forgot Password?",
+                        style: TextStyle(
+                          fontSize: 12,
+                          // color: AppColor.orange,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  ),
+                  height(24),
+                  LoginButtonWidget(
+                    text: "Login",
+                    onPressed: () async {
+                      if (_formKey.currentState!.validate()) {
+                        print(emailController.text);
+                        PreferenceHandler.saveLogin(true);
+                        final data = await DbHelper.loginUser(
+                          email: emailController.text,
+                          password: passwordController.text,
+                        );
+                        if (data != null) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Rumah(
+                                email: emailController.text!,
+                                name: usernameController.text!,
+                                age: "",
+                              ),
+                            ),
+                          );
+                        } else {
+                          Fluttertoast.showToast(
+                            msg: "Email atau password salah",
                           );
                         }
-
-                        // child: Text("submit"),
                       } else {
                         showDialog(
                           context: context,
                           builder: (context) {
                             return AlertDialog(
-                              title: Text("Validasi eror"),
-                              content: Text("Isi semuanya lah"),
+                              title: Text("Validation Error"),
+                              content: Text("Please fill all fields"),
                               actions: [
                                 TextButton(
-                                  child: Text("Balik"),
+                                  child: Text("OK"),
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                ),
+                                TextButton(
+                                  child: Text("Ga OK"),
                                   onPressed: () {
                                     Navigator.pop(context);
                                   },
@@ -181,6 +200,100 @@ class _LoginScreen19WidgetState extends State<LoginScreen19Widget> {
                         );
                       }
                     },
+                  ),
+                  // height(20),
+                  // LoginButton(
+                  //   text: "Ke Day13",
+                  //   onPressed: () {
+                  //     Navigator.push(
+                  //       context,
+                  //       MaterialPageRoute(builder: (context) => DryWidgetDay13()),
+                  //     );
+                  //   },
+                  // ),
+                  height(16),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        child: Container(
+                          margin: EdgeInsets.only(right: 8),
+                          height: 1,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        "Or Sign In With",
+                        // style: TextStyle(fontSize: 12, color: AppColor.gray88),
+                      ),
+                      Expanded(
+                        child: Container(
+                          margin: EdgeInsets.only(left: 8),
+
+                          height: 1,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  height(16),
+                  SizedBox(
+                    height: 48,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                      ),
+                      onPressed: () {
+                        // Navigate to MeetLima screen menggunakan pushnamed
+                        Navigator.pushNamed(context, "/meet_2");
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            "assets/images/tas.jpg",
+                            height: 16,
+                            width: 16,
+                          ),
+                          width(4),
+                          Text("Google"),
+                        ],
+                      ),
+                    ),
+                  ),
+                  height(16),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Don't have an account?",
+                        // style: TextStyle(fontSize: 12, color: AppColor.gray88),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => RegisterScreenDay19(),
+                            ),
+                          );
+                          // context.push(RegisterScreen());
+                          // Navigator.pushReplacement(
+                          //   context,
+                          //   MaterialPageRoute(builder: (context) => MeetEmpatA()),
+                          // );
+                        },
+                        child: Text(
+                          "Sign Up",
+                          style: TextStyle(
+                            // color: AppColor.blueButton,
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -197,7 +310,7 @@ class _LoginScreen19WidgetState extends State<LoginScreen19Widget> {
       width: double.infinity,
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("assets/images/putihbunga.jpg"),
+          image: AssetImage("assets/images/background.png"),
           fit: BoxFit.cover,
         ),
       ),
@@ -206,36 +319,47 @@ class _LoginScreen19WidgetState extends State<LoginScreen19Widget> {
 
   TextFormField buildTextField({
     String? hintText,
+    bool isPassword = false,
     TextEditingController? controller,
     String? Function(String?)? validator,
-    TextInputType? input,
   }) {
     return TextFormField(
       validator: validator,
       controller: controller,
+      obscureText: isPassword ? isVisibility : false,
       decoration: InputDecoration(
         hintText: hintText,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(32),
           borderSide: BorderSide(
-            color: const Color.fromARGB(255, 10, 10, 10).withOpacity(0.2),
+            color: Colors.black.withOpacity(0.2),
             width: 1.0,
           ),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(32),
-          borderSide: BorderSide(
-            color: const Color.fromARGB(255, 12, 12, 12),
-            width: 1.0,
-          ),
+          borderSide: BorderSide(color: Colors.black, width: 1.0),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(32),
           borderSide: BorderSide(
-            color: const Color.fromARGB(255, 17, 17, 17).withOpacity(0.2),
+            color: Colors.black.withOpacity(0.2),
             width: 1.0,
           ),
         ),
+        suffixIcon: isPassword
+            ? IconButton(
+                onPressed: () {
+                  setState(() {
+                    isVisibility = !isVisibility;
+                  });
+                },
+                icon: Icon(
+                  isVisibility ? Icons.visibility_off : Icons.visibility,
+                  // color: AppColor.gray88,
+                ),
+              )
+            : null,
       ),
     );
   }
