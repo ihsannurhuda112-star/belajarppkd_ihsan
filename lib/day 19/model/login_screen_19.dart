@@ -1,4 +1,3 @@
-import 'package:belajarppkd_ihsan/day%2015/drawer.dart';
 import 'package:belajarppkd_ihsan/day%2015/login_button.dart';
 import 'package:belajarppkd_ihsan/day%2019/database/db_helper.dart';
 import 'package:belajarppkd_ihsan/day%2019/model/register_screen_19.dart';
@@ -43,13 +42,6 @@ class _LoginScreenDay19State extends State<LoginScreenDay19> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(body: Stack(children: [buildBackground(), buildLayer()]));
-  }
-
-  login() async {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => DrawerWidget()),
-    );
   }
 
   final _formKey = GlobalKey<FormState>();
@@ -154,11 +146,15 @@ class _LoginScreenDay19State extends State<LoginScreenDay19> {
                       if (_formKey.currentState!.validate()) {
                         print(emailController.text);
                         PreferenceHandler.saveLogin(true);
+                        final email = emailController.text.trim();
+                        final password = passwordController.text.trim();
+                        final name = usernameController.text.trim();
                         final data = await DbHelper.loginUser(
-                          email: emailController.text,
-                          password: passwordController.text,
+                          email: email,
+                          password: password,
                         );
                         if (data != null) {
+                          PreferenceHandler.saveLogin(true);
                           Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -166,6 +162,13 @@ class _LoginScreenDay19State extends State<LoginScreenDay19> {
                                 email: emailController.text!,
                                 name: usernameController.text!,
                                 age: "",
+                              ),
+                            ),
+                          );
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                "Login sukses ${usernameController}",
                               ),
                             ),
                           );
@@ -310,7 +313,7 @@ class _LoginScreenDay19State extends State<LoginScreenDay19> {
       width: double.infinity,
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("assets/images/background.png"),
+          image: AssetImage("assets/images/putih.jpg"),
           fit: BoxFit.cover,
         ),
       ),

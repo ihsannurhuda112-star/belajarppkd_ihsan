@@ -240,7 +240,7 @@ class _RegisterScreenDay19State extends State<RegisterScreenDay19> {
       width: double.infinity,
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("assets/images/putih.jpg"),
+          image: AssetImage("assets/images/sun.jpeg"),
           fit: BoxFit.cover,
         ),
       ),
