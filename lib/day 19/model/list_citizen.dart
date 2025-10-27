@@ -1,5 +1,7 @@
 import 'package:belajarppkd_ihsan/day%2019/database/db_helper.dart';
 import 'package:belajarppkd_ihsan/day%2019/model/citizen_model.dart';
+import 'package:belajarppkd_ihsan/day%2019/model/login_screen_19.dart';
+import 'package:belajarppkd_ihsan/preferences/preference_handler.dart';
 import 'package:flutter/material.dart';
 
 class ListCitizenPage extends StatefulWidget {
@@ -52,6 +54,17 @@ class _ListCitizenPageState extends State<ListCitizenPage> {
                 }
               },
             ),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              PreferenceHandler.removeLogin();
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => LoginScreenDay19()),
+                (route) => false,
+              );
+            },
+            child: Text("LOG OUT"),
           ),
         ],
       ),
