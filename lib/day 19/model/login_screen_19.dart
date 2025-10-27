@@ -1,5 +1,6 @@
 import 'package:belajarppkd_ihsan/day%2015/login_button.dart';
 import 'package:belajarppkd_ihsan/day%2019/database/db_helper.dart';
+import 'package:belajarppkd_ihsan/day%2019/model/list_citizen.dart';
 import 'package:belajarppkd_ihsan/day%2019/model/register_screen_19.dart';
 import 'package:belajarppkd_ihsan/day%2019/model/rumah.dart';
 import 'package:belajarppkd_ihsan/preferences/preference_handler.dart';
@@ -9,7 +10,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 //Bahas Shared Preference
 class LoginScreenDay19 extends StatefulWidget {
   const LoginScreenDay19({super.key});
-  static const id = "/login_screen18";
+  static const id = "/login_screen19";
   @override
   State<LoginScreenDay19> createState() => _LoginScreenDay19State();
 }
@@ -85,19 +86,6 @@ class _LoginScreenDay19State extends State<LoginScreenDay19> {
                       return null;
                     },
                   ),
-                  height(24),
-                  buildTitle("Username"),
-                  height(12),
-                  buildTextField(
-                    hintText: "Enter your username",
-                    controller: usernameController,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "Username tidak boleh kosong";
-                      }
-                      return null;
-                    },
-                  ),
 
                   height(16),
                   buildTitle("Password"),
@@ -146,29 +134,18 @@ class _LoginScreenDay19State extends State<LoginScreenDay19> {
                       if (_formKey.currentState!.validate()) {
                         print(emailController.text);
                         PreferenceHandler.saveLogin(true);
-                        final email = emailController.text.trim();
-                        final password = passwordController.text.trim();
-                        final name = usernameController.text.trim();
                         final data = await DbHelper.loginUser(
-                          email: email,
-                          password: password,
+                          email: emailController.text,
+                          password: passwordController.text,
                         );
                         if (data != null) {
-                          PreferenceHandler.saveLogin(true);
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => Rumah(
-                                email: emailController.text!,
-                                name: usernameController.text!,
-                                age: "",
-                              ),
-                            ),
-                          );
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                "Login sukses ${usernameController}",
+                              builder: (context) => ListCitizenPage(
+                                //email: emailController.text,
+                                //name: usernameController.text,
+                                //age: "",
                               ),
                             ),
                           );
@@ -313,7 +290,7 @@ class _LoginScreenDay19State extends State<LoginScreenDay19> {
       width: double.infinity,
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("assets/images/putih.jpg"),
+          image: AssetImage("assets/images/putihbunga.jpg"),
           fit: BoxFit.cover,
         ),
       ),

@@ -9,11 +9,11 @@ class Rumah extends StatefulWidget {
     super.key,
     required this.email,
     required this.name,
-    required this.age,
+    //required this.age,
   });
   final String email;
   final String name;
-  final String age;
+  //final String age;
   @override
   State<Rumah> createState() => _RumahState();
 }
@@ -40,7 +40,7 @@ class _RumahState extends State<Rumah> {
               const Text("Berikut adalah informasi Anda:"),
               Text("Nama: ${widget.name}"),
               Text("Email: ${widget.email}"),
-              SizedBox(height: 30),
+              Expanded(child: SizedBox(height: 30)),
               FutureBuilder(
                 future: DbHelper.getAllCitizen(),
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -59,7 +59,7 @@ class _RumahState extends State<Rumah> {
                           return Column(
                             children: [
                               ListTile(
-                                title: Text(items.name),
+                                title: Text(items.username),
                                 subtitle: Text(items.email),
                               ),
                             ],

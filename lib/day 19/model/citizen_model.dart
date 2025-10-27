@@ -3,35 +3,39 @@ import 'dart:convert';
 
 class CitizenModel {
   int? id;
-  String name;
+  String username;
   String email;
   int age;
-  String pass;
+  String password;
+  String domisili;
   CitizenModel({
     this.id,
-    required this.name,
+    required this.username,
     required this.email,
     required this.age,
-    required this.pass,
+    required this.password,
+    required this.domisili,
   });
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
-      'name': name,
+      'username': username,
       'email': email,
       'age': age,
-      'pass': pass,
+      'password': password,
+      'domisili': domisili,
     };
   }
 
   factory CitizenModel.fromMap(Map<String, dynamic> map) {
     return CitizenModel(
       id: map['id'] != null ? map['id'] as int : null,
-      name: map['name'] as String,
+      username: map['username'] as String,
       email: map['email'] as String,
       age: map['age'] as int,
-      pass: map['pass'] as String,
+      password: map['password'] as String,
+      domisili: map['domisili'] as String,
     );
   }
 

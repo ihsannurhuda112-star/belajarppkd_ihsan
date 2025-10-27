@@ -11,7 +11,7 @@ class DbHelper {
       join(dbPath, 'rtdigital.db'),
       onCreate: (db, version) async {
         await db.execute(
-          "CREATE TABLE $tableCitizen(id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, email TEXT, password TEXT)",
+          "CREATE TABLE $tableCitizen(id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, email TEXT, password TEXT, age INTEGER, domisili TEXT)",
         );
       },
 
@@ -48,6 +48,8 @@ class DbHelper {
       where: 'email = ? AND password = ?',
       whereArgs: [email, password],
     );
+    final List<Map<String, dynamic>> cek = await dbs.query(tableCitizen);
+    print(cek);
     if (results.isNotEmpty) {
       return CitizenModel.fromMap(results.first);
     }

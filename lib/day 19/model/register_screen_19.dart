@@ -103,9 +103,9 @@ class _RegisterScreenDay19State extends State<RegisterScreenDay19> {
                       return null;
                     },
                   ),
-                  height(5),
+                  height(16),
                   buildTitle("Domisili"),
-                  height(5),
+                  height(12),
                   buildTextField(
                     hintText: "Enter your domisili",
                     controller: domController,
@@ -116,27 +116,20 @@ class _RegisterScreenDay19State extends State<RegisterScreenDay19> {
                       return null;
                     },
                   ),
-                  height(5),
+                  height(16),
                   buildTitle("Phone"),
-                  height(5),
+                  height(12),
                   buildTextField(hintText: "Enter your phone number"),
 
-                  SizedBox(height: 8),
-                  Text("Umur"),
-                  SizedBox(height: 8),
-                  TextFormField(
+                  height(16),
+                  buildTitle("age"),
+                  height(12),
+                  buildTextField(
+                    hintText: "Enter your age",
                     controller: ageController,
-                    autovalidateMode: AutovalidateMode.onUnfocus,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: 'Masukan Umur Anda',
-                    ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Umur Tidak Boleh Kosong';
-                      }
-                      if (!RegExp(r'^[0-9]+$').hasMatch(value)) {
-                        return 'Masukan Umur dengan angka 1-99';
+                        return "age tidak boleh kosong";
                       }
                       return null;
                     },
@@ -150,14 +143,15 @@ class _RegisterScreenDay19State extends State<RegisterScreenDay19> {
                         print(emailController.text);
                         final CitizenModel data = CitizenModel(
                           email: emailController.text,
-                          name: usernameController.text,
-                          pass: passwordController.text,
+                          username: usernameController.text,
+                          password: passwordController.text,
                           age: int.parse(ageController.text),
+                          domisili: domController.text,
                         );
                         DbHelper.registerUser(data);
                         Fluttertoast.showToast(msg: "Register Berhasil");
                         // PreferenceHandler.saveLogin(true);
-                        Navigator.pop(context);
+                        // Navigator.pop(context);
                         // Navigator.push(
                         //   context,
                         //   MaterialPageRoute(
@@ -240,7 +234,7 @@ class _RegisterScreenDay19State extends State<RegisterScreenDay19> {
       width: double.infinity,
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("assets/images/sun.jpeg"),
+          image: AssetImage("assets/images/putihbunga.jpg"),
           fit: BoxFit.cover,
         ),
       ),
