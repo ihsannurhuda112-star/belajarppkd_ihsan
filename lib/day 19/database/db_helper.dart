@@ -16,12 +16,12 @@ class DbHelper {
       },
 
       //onUpgrade: (db, oldVersion, newVersion) async {
-      // if (newVersion == 2) {
-      //await db.execute(
-      //   "CREATE TABLE $tableCitizen(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, email TEXT, age int)",
-      // );
-      //  }
-      //  },
+      //  if (oldVersion < newVersion) {
+      // await db.execute(
+      //   "CREATE TABLE $tableCitizen(id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, email TEXT, password TEXT, age INTEGER, domisili TEXT)",
+      //  );
+      // }
+      // },
       version: 1,
     );
   }
@@ -57,16 +57,16 @@ class DbHelper {
   }
 
   // tambahin warga
-  //static Future<void> createCitizen(CitizenModel citizen) async {
-  //final dbs = await db();
-  //insert fungsi untuk menambahkan data (CREATE)
-  //await dbs.insert(
-  //tableCitizen,
-  // citizen.toMap(),
-  // conflictAlgorithm: ConflictAlgorithm.replace,
-  //);
-  //print(citizen.toMap());
-  //}
+  static Future<void> createCitizen(CitizenModel citizen) async {
+    final dbs = await db();
+    //insert fungsi untuk menambahkan data (CREATE)
+    await dbs.insert(
+      tableCitizen,
+      citizen.toMap(),
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
+    print(citizen.toMap());
+  }
 
   // get citizen
   static Future<List<CitizenModel>> getAllCitizen() async {
@@ -74,5 +74,24 @@ class DbHelper {
     final List<Map<String, dynamic>> results = await dbs.query(tableCitizen);
     print(results.map((e) => CitizenModel.fromMap(e)).toList());
     return results.map((e) => CitizenModel.fromMap(e)).toList();
+  }
+
+  // update warga
+  static Future<void> updateCitizen(CitizenModel citizen) async {
+    final dbs = await db();
+    await dbs.update(
+      tableCitizen,
+      citizen.toMap(),
+      where: "id = ?",
+      whereArgs: [citizen.id],
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
+    print(citizen.toMap());
+  }
+
+  // delete citizen
+  static Future<void> deleteCitizen(int id) async {
+    final dbs = await db();
+    await dbs.delete(tableCitizen, where: "id = ?", whereArgs: [id]);
   }
 }

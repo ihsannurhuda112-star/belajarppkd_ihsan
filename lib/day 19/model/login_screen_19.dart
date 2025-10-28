@@ -2,7 +2,7 @@ import 'package:belajarppkd_ihsan/day%2015/login_button.dart';
 import 'package:belajarppkd_ihsan/day%2019/database/db_helper.dart';
 import 'package:belajarppkd_ihsan/day%2019/model/list_citizen.dart';
 import 'package:belajarppkd_ihsan/day%2019/model/register_screen_19.dart';
-import 'package:belajarppkd_ihsan/day%2019/model/rumah.dart';
+import 'package:belajarppkd_ihsan/day%2019/view/create_citizen.dart';
 import 'package:belajarppkd_ihsan/preferences/preference_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -142,7 +142,7 @@ class _LoginScreenDay19State extends State<LoginScreenDay19> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => ListCitizenPage(
+                              builder: (context) => CreateCitizenWidget(
                                 //email: emailController.text,
                                 //name: usernameController.text,
                                 //age: "",
