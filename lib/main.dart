@@ -1,5 +1,8 @@
 import 'package:belajarppkd_ihsan/day%2019/model/login_screen_19.dart';
+import 'package:belajarppkd_ihsan/day%2019/model/splash_screen19.dart';
 import 'package:belajarppkd_ihsan/day%2019/view/create_citizen.dart';
+import 'package:belajarppkd_ihsan/day%2031/view/splash_screen_31.dart';
+import 'package:belajarppkd_ihsan/day%2031/view/user_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
@@ -34,7 +37,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const LoginScreenDay19(),
+      home: const SplashScreen31(),
     );
   }
 }

@@ -11,4 +11,5 @@ class AppImages {
   static const krisbee = "$assetImage/kris bee.jpg";
   static const frenchfries = "$assetImage/french fries.jpg";
   static const kosong = "$assetImage/kosong.png";
+  static const game = "$assetImage/game.jpg";
 }
