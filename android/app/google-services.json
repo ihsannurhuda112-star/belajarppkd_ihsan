@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "312832825016",
+    "project_id": "saya-terlalu-project",
+    "storage_bucket": "saya-terlalu-project.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:312832825016:android:994b8b03cd249d3765c64d",
+        "android_client_info": {
+          "package_name": "com.example.belajarppkd_ihsan"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgka-u9obzrQxe-_4PHuz580KAJ-Nbrfc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
